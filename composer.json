@@ -1,0 +1,22 @@
+{
+    "name": "onex/espier-qiniu",
+    "description": "A qiniu storage for lumen",
+    "keywords": ["qiniu", "lumen"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Bryant Yan",
+            "email": "bryant.yan@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "qiniu/php-sdk": "7.1.*",
+        "league/flysystem": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Espier\\Qiniu\\": "src"
+        }
+    }
+}
