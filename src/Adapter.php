@@ -29,6 +29,8 @@ class Adapter extends AbstractAdapter {
 
     private $bucketManager = null;
 
+    private $uploadManager = null;
+
     public function __construct($accessKey, $secretKey, $buckets)
     {
         $this->getAuth($accessKey, $secretKey);
