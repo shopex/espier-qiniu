@@ -332,4 +332,11 @@ class Adapter extends AbstractAdapter {
         $stat = $this->getMetadata($path);
         return $stat ? [ $newField => $stat[$field] ] : false;
     }
+
+    //获取URL地址
+    public function getUrl($path)
+    {
+        return $this->getPathPrefix().$path;
+    }
 }
+
