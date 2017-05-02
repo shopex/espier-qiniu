@@ -4,7 +4,7 @@ namespace Espier\Qiniu;
 
 use League\Flysystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
-use Storage;
+use Illuminate\Support\Facades\Storage as Storage;
 use Espier\Qiniu\Adapter as QiuniuAdapter;
 
 class QiniuServiceProvider extends ServiceProvider
