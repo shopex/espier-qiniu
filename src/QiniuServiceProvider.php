@@ -4,14 +4,13 @@ namespace Espier\Qiniu;
 
 use League\Flysystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Storage as Storage;
 use Espier\Qiniu\Adapter as QiuniuAdapter;
 
 class QiniuServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Storage::extend('qiniu', function($app, $config) {
+        $this->app->make('filesystem')->extend('qiniu', function($app, $config) {
             $client = new QiuniuAdapter(
                 $config['access_key'],
                 $config['secret_key'],
