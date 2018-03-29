@@ -42,7 +42,7 @@ class Adapter extends AbstractAdapter {
 
     //指定Bucket
     //如果未指定则默认为第一个Bucket
-    protected function withBucket($bucketName=null)
+    public function withBucket($bucketName=null)
     {
         if( empty($this->buckets) )
         {
@@ -119,6 +119,10 @@ class Adapter extends AbstractAdapter {
      */
     public function write($path, $contents, Config $config)
     {
+        if($bucket = $config->get('bucket', null)) {
+            $this->withBucket($bucket);
+        }
+
         $token = $this->auth->uploadToken($this->uploadBucket, $path, 3600, null, true);
 
         $params            = $config->get('params', null);
@@ -244,8 +248,8 @@ class Adapter extends AbstractAdapter {
      */
     public function read($path)
     {
-        $location = $this->applyPathPrefix($path);
-        return array('contents' => file_get_contents($location));
+        $url = $this->getUrl($path);
+        return array('contents' => file_get_contents($url));
     }
 
     /**
@@ -338,7 +342,8 @@ class Adapter extends AbstractAdapter {
     //获取URL地址
     public function getUrl($path)
     {
-        return $this->getPathPrefix().$path;
+        $baseUrl = $this->applyPathPrefix($path);
+        return $this->auth->privateDownloadUrl($baseUrl);
     }
 }
 
